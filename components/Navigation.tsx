@@ -21,27 +21,27 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className="sticky top-0 z-50 w-full border-b border-white/5 bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center space-x-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-500">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600">
             <Receipt className="h-5 w-5 text-white" />
           </div>
-          <span className="text-xl font-bold">
+          <span className="text-xl font-bold tracking-tight">
             Recei<span className="gradient-text">pilot</span>
           </span>
         </Link>
 
-        <div className="hidden items-center space-x-6 md:flex">
+        <div className="hidden items-center space-x-1 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                'text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400',
+                'rounded-lg px-4 py-2 text-sm font-medium transition-all',
                 pathname === link.href
-                  ? 'text-blue-600 dark:text-blue-400'
-                  : 'text-muted-foreground'
+                  ? 'bg-violet-500/10 text-violet-400'
+                  : 'text-muted-foreground hover:bg-white/5 hover:text-white'
               )}
             >
               {link.label}
@@ -49,10 +49,10 @@ export function Navigation() {
           ))}
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="hidden rounded-lg p-2 hover:bg-accent md:block"
+            className="hidden rounded-lg p-2 text-muted-foreground transition-colors hover:bg-white/5 hover:text-white md:block"
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
@@ -61,12 +61,12 @@ export function Navigation() {
               <Moon className="h-5 w-5" />
             )}
           </button>
-          <div className="hidden md:block">
+          <div className="hidden md:block [&>*]:!rounded-lg">
             <ConnectButton />
           </div>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden"
+            className="rounded-lg p-2 text-muted-foreground hover:bg-white/5 md:hidden"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (

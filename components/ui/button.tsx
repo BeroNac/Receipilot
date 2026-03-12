@@ -4,28 +4,33 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground shadow-md hover:bg-primary/90 hover:shadow-lg',
+          'bg-violet-600 text-white hover:bg-violet-700 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40',
         destructive:
-          'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+          'bg-red-600 text-white shadow-lg hover:bg-red-700',
         outline:
-          'border-2 border-primary bg-background text-primary shadow-sm hover:bg-primary hover:text-primary-foreground',
+          'border border-violet-500/50 bg-transparent text-violet-400 hover:bg-violet-500/10 hover:border-violet-400',
         secondary:
-          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
-        gradient: 'bg-gradient-to-r from-blue-500 to-violet-500 text-white shadow-lg hover:from-blue-600 hover:to-violet-600 hover:shadow-xl',
+          'bg-white/5 text-white border border-white/10 hover:bg-white/10',
+        ghost: 
+          'text-white/70 hover:bg-white/5 hover:text-white',
+        link: 
+          'text-violet-400 underline-offset-4 hover:underline',
+        gradient: 
+          'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 hover:from-violet-500 hover:to-indigo-500',
+        glow:
+          'bg-violet-600 text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:bg-violet-500',
       },
       size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-11 rounded-md px-8',
-        xl: 'h-14 rounded-lg px-12 text-lg',
-        icon: 'h-9 w-9',
+        default: 'h-10 px-5 text-sm',
+        sm: 'h-9 px-4 text-sm',
+        lg: 'h-12 px-8 text-base',
+        xl: 'h-14 px-10 text-lg',
+        icon: 'h-10 w-10',
       },
     },
     defaultVariants: {
