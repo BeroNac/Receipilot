@@ -70,7 +70,7 @@ export function Demo() {
         className="glass-effect rounded-2xl p-12 text-center"
       >
         <h2 className="mb-4 text-3xl font-bold">
-          Experience the <span className="text-neon-glow text-neon-cyan">Full Flow</span>
+          Experience the <span className="gradient-text">Full Flow</span>
         </h2>
         <p className="mb-8 text-muted-foreground">
           Click the button below to simulate a complete receipt verification and NFT minting
@@ -79,7 +79,7 @@ export function Demo() {
 
         <Button
           size="xl"
-          variant="neon"
+          variant="gradient"
           onClick={handleSimulate}
           disabled={isGeneratingProof || nftMinted}
           className="min-w-[300px]"
@@ -122,7 +122,7 @@ export function Demo() {
           <div className="mb-4 border-b border-border pb-4">
             <div className="mb-2">
               <span className="text-muted-foreground">From:</span>{' '}
-              <span className="text-neon-cyan">orders@amazon.com</span>
+              <span className="text-blue-600 dark:text-blue-400">orders@amazon.com</span>
             </div>
             <div className="mb-2">
               <span className="text-muted-foreground">To:</span> customer@example.com

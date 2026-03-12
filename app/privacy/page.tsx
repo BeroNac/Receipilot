@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         </section>
 
         <section className="glass-effect rounded-2xl p-8">
-          <h2 className="mb-4 text-2xl font-semibold text-neon-cyan">
+          <h2 className="mb-4 text-2xl font-semibold text-blue-600 dark:text-blue-400">
             What We NEVER Store
           </h2>
           <ul className="list-inside list-disc space-y-2 text-muted-foreground">
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
               The cryptographic proof hash is sent to the blockchain
             </li>
             <li>
-              <strong className="text-neon-cyan">
+              <strong className="text-blue-600 dark:text-blue-400">
                 The entire email content is permanently deleted within 5 seconds
               </strong>
             </li>
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
         </section>
 
         <section className="glass-effect rounded-2xl p-8">
-          <h2 className="mb-4 text-2xl font-semibold text-neon-purple">
+          <h2 className="mb-4 text-2xl font-semibold text-violet-600 dark:text-violet-400">
             Client-Side Processing
           </h2>
           <p className="text-muted-foreground">
@@ -141,7 +141,7 @@ export default function PrivacyPage() {
             If you have any questions about our privacy practices, please contact us at{' '}
             <a
               href="mailto:privacy@receipilot.xyz"
-              className="text-neon-cyan hover:underline"
+              className="text-blue-600 hover:underline dark:text-blue-400"
             >
               privacy@receipilot.xyz
             </a>

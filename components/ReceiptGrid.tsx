@@ -102,7 +102,7 @@ export function ReceiptGrid({ address, searchQuery }: ReceiptGridProps) {
     return (
       <div className="flex min-h-[400px] items-center justify-center">
         <div className="text-center">
-          <div className="mb-4 inline-block h-12 w-12 animate-spin rounded-full border-4 border-neon-cyan border-t-transparent" />
+          <div className="mb-4 inline-block h-12 w-12 animate-spin rounded-full border-4 border-blue-500 border-t-transparent" />
           <p className="text-muted-foreground">Loading your receipts...</p>
         </div>
       </div>
@@ -171,7 +171,7 @@ export function ReceiptGrid({ address, searchQuery }: ReceiptGridProps) {
             </div>
           </div>
 
-          <div className="holographic mt-6 rounded-lg p-3 text-center text-xs font-bold text-black">
+          <div className="mt-6 rounded-lg bg-gradient-to-r from-blue-500 to-violet-500 p-3 text-center text-xs font-bold text-white">
             VERIFIED BY VLAYER
           </div>
 
@@ -179,7 +179,7 @@ export function ReceiptGrid({ address, searchQuery }: ReceiptGridProps) {
             href={receipt.ipfsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 flex items-center justify-center gap-2 text-sm text-neon-cyan opacity-0 transition-opacity group-hover:opacity-100"
+            className="mt-4 flex items-center justify-center gap-2 text-sm text-blue-600 dark:text-blue-400 opacity-0 transition-opacity group-hover:opacity-100"
           >
             View on IPFS
             <ExternalLink className="h-4 w-4" />

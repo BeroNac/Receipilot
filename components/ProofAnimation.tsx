@@ -140,9 +140,9 @@ export function ProofAnimation({
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#00f0ff" />
-                  <stop offset="50%" stopColor="#bf40ff" />
-                  <stop offset="100%" stopColor="#ff10f0" />
+                  <stop offset="0%" stopColor="#3b82f6" />
+                  <stop offset="50%" stopColor="#8b5cf6" />
+                  <stop offset="100%" stopColor="#06b6d4" />
                 </linearGradient>
               </defs>
             </svg>
@@ -154,7 +154,7 @@ export function ProofAnimation({
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
               >
-                <div className="text-neon-glow mb-2 text-6xl font-bold text-neon-cyan">
+                <div className="mb-2 text-6xl font-bold gradient-text">
                   {Math.round(progress)}%
                 </div>
                 <div className="text-sm text-muted-foreground">
@@ -178,7 +178,7 @@ export function ProofAnimation({
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   className={`flex items-center gap-3 rounded-lg p-3 ${
                     index === currentStepIndex
-                      ? 'bg-neon-cyan/10 border border-neon-cyan/30'
+                      ? 'bg-blue-500/10 border border-blue-500/30'
                       : completedSteps.includes(index)
                       ? 'bg-green-500/10 border border-green-500/30'
                       : 'bg-white/5'
@@ -189,14 +189,14 @@ export function ProofAnimation({
                       completedSteps.includes(index)
                         ? 'bg-green-500'
                         : index === currentStepIndex
-                        ? 'bg-neon-cyan'
+                        ? 'bg-blue-500'
                         : 'bg-white/10'
                     }`}
                   >
                     {completedSteps.includes(index) ? (
-                      <Check className="h-4 w-4 text-black" />
+                      <Check className="h-4 w-4 text-white" />
                     ) : (
-                      <span className="text-xs font-bold text-black">
+                      <span className="text-xs font-bold text-white">
                         {index + 1}
                       </span>
                     )}
@@ -204,7 +204,7 @@ export function ProofAnimation({
                   <span
                     className={`text-sm ${
                       index === currentStepIndex
-                        ? 'text-neon-cyan font-semibold'
+                        ? 'text-blue-500 font-semibold'
                         : completedSteps.includes(index)
                         ? 'text-green-500'
                         : 'text-muted-foreground'
@@ -218,7 +218,7 @@ export function ProofAnimation({
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                     >
-                      <div className="h-4 w-4 rounded-full border-2 border-neon-cyan border-t-transparent" />
+                      <div className="h-4 w-4 rounded-full border-2 border-blue-500 border-t-transparent" />
                     </motion.div>
                   )}
                 </motion.div>

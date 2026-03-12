@@ -116,7 +116,7 @@ export function PartnersCarousel() {
     return (
       <section className="container mx-auto px-4 py-20">
         <div className="text-center">
-          <h2 className="mb-12 text-4xl font-bold">Loading Partners...</h2>
+          <div className="mx-auto h-8 w-48 animate-pulse rounded-lg bg-muted" />
         </div>
       </section>
     );
@@ -125,8 +125,8 @@ export function PartnersCarousel() {
   return (
     <section className="container mx-auto px-4 py-20">
       <div className="mb-12 text-center">
-        <h2 className="mb-4 text-4xl font-bold md:text-5xl">
-          Trusted by <span className="text-neon-glow text-neon-purple">Leading Brands</span>
+        <h2 className="mb-4 text-3xl font-bold md:text-5xl">
+          Trusted by <span className="gradient-text">Leading Brands</span>
         </h2>
         <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
           We're partnering with major e-commerce platforms to bring verified receipts to
@@ -136,7 +136,7 @@ export function PartnersCarousel() {
 
       <div className="relative overflow-hidden">
         <motion.div
-          className="flex gap-12"
+          className="flex gap-8"
           animate={{
             x: ['0%', '-50%'],
           }}
@@ -149,15 +149,15 @@ export function PartnersCarousel() {
           {[...partners, ...partners].map((partner, index) => (
             <div
               key={`${partner._id}-${index}`}
-              className="glass-effect relative flex h-32 w-48 flex-shrink-0 items-center justify-center rounded-xl p-6"
+              className="glass-effect relative flex h-24 w-40 flex-shrink-0 items-center justify-center rounded-xl p-4"
             >
               {partner.isComingSoon && (
-                <div className="absolute right-2 top-2 rounded-full bg-neon-purple px-2 py-1 text-xs font-bold text-black">
+                <div className="absolute right-2 top-2 rounded-full bg-violet-100 px-2 py-0.5 text-xs font-medium text-violet-700 dark:bg-violet-900/30 dark:text-violet-300">
                   Soon
                 </div>
               )}
               <div className="flex h-full w-full items-center justify-center text-center">
-                <span className="text-lg font-semibold opacity-70">{partner.name}</span>
+                <span className="text-sm font-semibold text-muted-foreground">{partner.name}</span>
               </div>
             </div>
           ))}

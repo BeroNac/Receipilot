@@ -113,7 +113,7 @@ export function UploadFlow() {
               </div>
 
               <div className="space-y-6">
-                <div className="flex items-center justify-center rounded-xl border-2 border-dashed border-border p-12 transition-all hover:border-neon-cyan">
+                <div className="flex items-center justify-center rounded-xl border-2 border-dashed border-border p-12 transition-all hover:border-blue-500">
                   <Label
                     htmlFor="file-upload"
                     className="flex cursor-pointer flex-col items-center"
@@ -135,7 +135,7 @@ export function UploadFlow() {
 
                 <Button
                   size="lg"
-                  variant="neon"
+                  variant="gradient"
                   className="w-full"
                   onClick={handleGenerateProof}
                   disabled={!file || !isConnected}
@@ -177,7 +177,7 @@ export function UploadFlow() {
 
                 <Button
                   size="lg"
-                  variant="neon"
+                  variant="gradient"
                   className="w-full"
                   onClick={handleGenerateProof}
                   disabled={!emailText.trim() || !isConnected}
@@ -202,11 +202,11 @@ export function UploadFlow() {
               </div>
 
               <div className="space-y-8">
-                <div className="rounded-xl bg-neon-cyan/10 p-6 text-center">
+                <div className="rounded-xl bg-blue-50 p-6 text-center dark:bg-blue-900/20">
                   <p className="mb-2 text-sm text-muted-foreground">Forward your email to</p>
                   <div className="flex items-center justify-center gap-2">
-                    <Mail className="h-6 w-6 text-neon-cyan" />
-                    <span className="text-2xl font-bold text-neon-cyan">
+                    <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">
                       prove@receipilot.xyz
                     </span>
                   </div>
@@ -225,7 +225,7 @@ export function UploadFlow() {
                       connected wallet
                     </li>
                     <li>
-                      <strong className="text-neon-cyan">
+                      <strong className="text-blue-600 dark:text-blue-400">
                         The email content is permanently deleted within 5 seconds
                       </strong>
                     </li>
@@ -233,8 +233,8 @@ export function UploadFlow() {
                   </ol>
                 </div>
 
-                <div className="rounded-lg border border-neon-purple/50 bg-neon-purple/10 p-4">
-                  <h4 className="mb-2 flex items-center gap-2 font-semibold text-neon-purple">
+                <div className="rounded-lg border border-violet-200 bg-violet-50 p-4 dark:border-violet-800 dark:bg-violet-900/20">
+                  <h4 className="mb-2 flex items-center gap-2 font-semibold text-violet-700 dark:text-violet-300">
                     <svg
                       className="h-5 w-5"
                       fill="none"

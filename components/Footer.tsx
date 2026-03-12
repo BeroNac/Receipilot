@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Github, Twitter, Mail } from 'lucide-react';
+import { Github, Twitter, Mail, Receipt } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,23 +10,11 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-4">
           <div>
             <div className="mb-4 flex items-center space-x-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-neon-cyan">
-                <svg
-                  className="h-6 w-6 text-black"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-500">
+                <Receipt className="h-5 w-5 text-white" />
               </div>
               <span className="text-xl font-bold">
-                Receipt<span className="text-neon-cyan">ilot</span>
+                Recei<span className="gradient-text">pilot</span>
               </span>
             </div>
             <p className="text-sm text-muted-foreground">
@@ -39,17 +27,17 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-semibold">Product</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/" className="hover:text-neon-cyan">
+                <Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/demo" className="hover:text-neon-cyan">
+                <Link href="/demo" className="hover:text-blue-600 dark:hover:text-blue-400">
                   Demo
                 </Link>
               </li>
               <li>
-                <Link href="/my-receipts" className="hover:text-neon-cyan">
+                <Link href="/my-receipts" className="hover:text-blue-600 dark:hover:text-blue-400">
                   My Receipts
                 </Link>
               </li>
@@ -60,12 +48,12 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-semibold">Company</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/privacy" className="hover:text-neon-cyan">
+                <Link href="/privacy" className="hover:text-blue-600 dark:hover:text-blue-400">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <a href="mailto:hello@receipilot.xyz" className="hover:text-neon-cyan">
+                <a href="mailto:hello@receipilot.xyz" className="hover:text-blue-600 dark:hover:text-blue-400">
                   Contact
                 </a>
               </li>
@@ -74,7 +62,7 @@ export function Footer() {
                   href="https://github.com/receipilot"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-neon-cyan"
+                  className="hover:text-blue-600 dark:hover:text-blue-400"
                 >
                   GitHub
                 </a>
@@ -89,7 +77,7 @@ export function Footer() {
                 href="https://twitter.com/receipilot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-neon-cyan"
+                className="text-muted-foreground transition-colors hover:text-blue-600 dark:hover:text-blue-400"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
@@ -98,14 +86,14 @@ export function Footer() {
                 href="https://github.com/receipilot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-neon-cyan"
+                className="text-muted-foreground transition-colors hover:text-blue-600 dark:hover:text-blue-400"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
               </a>
               <a
                 href="mailto:hello@receipilot.xyz"
-                className="text-muted-foreground transition-colors hover:text-neon-cyan"
+                className="text-muted-foreground transition-colors hover:text-blue-600 dark:hover:text-blue-400"
                 aria-label="Email"
               >
                 <Mail className="h-5 w-5" />
@@ -125,7 +113,7 @@ export function Footer() {
                 href="https://vlayer.xyz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-neon-purple hover:underline"
+                className="text-violet-600 hover:underline dark:text-violet-400"
               >
                 vlayer
               </a>

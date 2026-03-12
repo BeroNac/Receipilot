@@ -43,7 +43,7 @@ export default function MyReceiptsPage() {
     <div className="container mx-auto px-4 py-20">
       <div className="mb-12">
         <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-          My <span className="text-neon-glow text-neon-cyan">Receipts</span>
+          My <span className="gradient-text">Receipts</span>
         </h1>
         <p className="mb-8 text-lg text-muted-foreground">
           All your verified receipt NFTs in one place
