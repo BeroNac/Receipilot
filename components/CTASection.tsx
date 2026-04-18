@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
@@ -57,7 +58,7 @@ export function CTASection() {
               </div>
             )}
             <Button size="xl" variant="outline" asChild>
-              <a href="/demo">Try Live Demo</a>
+              <Link href="/demo">Try Live Demo</Link>
             </Button>
           </div>
 

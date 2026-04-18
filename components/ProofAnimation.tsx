@@ -10,6 +10,17 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
+const STEPS: Step[] = [
+  { label: 'Parsing email headers', duration: 15 },
+  { label: 'Extracting receipt data', duration: 20 },
+  { label: 'Verifying DKIM signature', duration: 25 },
+  { label: 'Generating zero-knowledge proof', duration: 30 },
+  { label: 'Preparing NFT metadata', duration: 15 },
+  { label: 'Uploading to IPFS', duration: 20 },
+  { label: 'Minting on Base blockchain', duration: 25 },
+  { label: 'Finalizing transaction', duration: 10 },
+];
+
 interface ProofAnimationProps {
   isOpen: boolean;
   onComplete: () => void;
@@ -30,17 +41,6 @@ export function ProofAnimation({
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
 
-  const steps: Step[] = [
-    { label: 'Parsing email headers', duration: 15 },
-    { label: 'Extracting receipt data', duration: 20 },
-    { label: 'Verifying DKIM signature', duration: 25 },
-    { label: 'Generating zero-knowledge proof', duration: 30 },
-    { label: 'Preparing NFT metadata', duration: 15 },
-    { label: 'Uploading to IPFS', duration: 20 },
-    { label: 'Minting on Base blockchain', duration: 25 },
-    { label: 'Finalizing transaction', duration: 10 },
-  ];
-
   useEffect(() => {
     if (!isOpen) {
       setProgress(0);
@@ -58,18 +58,18 @@ export function ProofAnimation({
         const newProgress = Math.min(prev + increment, 100);
         
         // Calculate current step based on progress
-        const _cumulativeDuration = steps.reduce((acc, step, idx) => {
+        const _cumulativeDuration = STEPS.reduce((acc, step, idx) => {
           if (idx < currentStepIndex) return acc + step.duration;
           return acc;
         }, 0);
         
-        const totalStepsDuration = steps.reduce((acc, step) => acc + step.duration, 0);
+        const totalStepsDuration = STEPS.reduce((acc, step) => acc + step.duration, 0);
         const progressInSteps = (newProgress / 100) * totalStepsDuration;
         
         let stepIndex = 0;
         let cumulative = 0;
-        for (let i = 0; i < steps.length; i++) {
-          cumulative += steps[i].duration;
+        for (let i = 0; i < STEPS.length; i++) {
+          cumulative += STEPS[i].duration;
           if (progressInSteps <= cumulative) {
             stepIndex = i;
             break;
@@ -92,7 +92,7 @@ export function ProofAnimation({
     }, interval);
 
     return () => clearInterval(timer);
-  }, [isOpen, currentStepIndex, onComplete, steps]);
+  }, [isOpen, currentStepIndex, onComplete]);
 
   const radius = 120;
   const circumference = 2 * Math.PI * radius;
@@ -167,7 +167,7 @@ export function ProofAnimation({
           {/* Steps */}
           <div className="w-full max-w-md space-y-3">
             <AnimatePresence>
-              {steps.map((step, index) => (
+              {STEPS.map((step, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}

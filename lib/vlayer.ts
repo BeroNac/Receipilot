@@ -1,6 +1,17 @@
 // vlayer SDK integration for zero-knowledge proofs
 // This is a simplified implementation - actual vlayer SDK usage would be more complex
 
+import { createHash } from 'crypto';
+
+function logError(message: string, error?: unknown) {
+  const detail = error instanceof Error ? `: ${error.message}` : '';
+  process.stderr.write(`${message}${detail}\n`);
+}
+
+function logWarn(message: string) {
+  process.stderr.write(`${message}\n`);
+}
+
 interface DKIMProof {
   emailHash: string;
   signature: string;
@@ -25,7 +36,7 @@ export class VLayerProver {
     this._proverUrl = process.env.VLAYER_PROVER_URL || 'https://prover.vlayer.xyz';
 
     if (!this.apiKey) {
-      console.warn('vlayer API key not configured');
+      logWarn('vlayer API key not configured');
     }
   }
 
@@ -40,8 +51,6 @@ export class VLayerProver {
     try {
       // In production, this would call the actual vlayer API
       // For now, we'll simulate the verification process
-      
-      console.log('Verifying email with vlayer ZK Email...');
       
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -68,7 +77,7 @@ export class VLayerProver {
         extractedData,
       };
     } catch (error) {
-      console.error('Email verification failed:', error);
+      logError('Email verification failed', error);
       throw new Error('Failed to verify email signature');
     }
   }
@@ -78,8 +87,6 @@ export class VLayerProver {
    */
   async generateProof(dkimProof: DKIMProof, emailData: EmailData): Promise<string> {
     try {
-      console.log('Generating ZK proof with vlayer...');
-
       // Simulate proof generation
       await new Promise(resolve => setTimeout(resolve, 3000));
 
@@ -93,7 +100,7 @@ export class VLayerProver {
       const proofHash = this.hashProof(JSON.stringify(proofData));
       return proofHash;
     } catch (error) {
-      console.error('Proof generation failed:', error);
+      logError('Proof generation failed', error);
       throw new Error('Failed to generate ZK proof');
     }
   }
@@ -101,16 +108,14 @@ export class VLayerProver {
   /**
    * Verify an existing proof on-chain
    */
-  async verifyProof(proofHash: string): Promise<boolean> {
+  async verifyProof(_proofHash: string): Promise<boolean> {
     try {
       // In production, this would verify the proof on-chain
-      console.log('Verifying proof:', proofHash);
-      
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       return true;
     } catch (error) {
-      console.error('Proof verification failed:', error);
+      logError('Proof verification failed', error);
       return false;
     }
   }
@@ -156,13 +161,11 @@ export class VLayerProver {
 
   private hashEmail(content: string): string {
     // Simple hash - production would use vlayer's cryptographic hash
-    const crypto = require('crypto');
-    return '0x' + crypto.createHash('sha256').update(content).digest('hex');
+    return '0x' + createHash('sha256').update(content).digest('hex');
   }
 
   private hashProof(data: string): string {
-    const crypto = require('crypto');
-    return '0x' + crypto.createHash('sha256').update(data).digest('hex');
+    return '0x' + createHash('sha256').update(data).digest('hex');
   }
 }
 

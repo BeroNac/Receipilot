@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
@@ -10,7 +11,6 @@ import {
   CheckCircle2, 
   Wallet,
   ArrowRight,
-  ExternalLink,
   Copy,
   RotateCcw
 } from 'lucide-react';
@@ -84,6 +84,8 @@ export function Demo() {
       }, 30);
       return () => clearInterval(timer);
     }
+
+    return undefined;
   }, [step]);
 
   const handleStart = () => {
@@ -321,10 +323,10 @@ export function Demo() {
                     Try Again
                   </Button>
                   <Button variant="gradient" className="flex-1 gap-2" asChild>
-                    <a href="/" >
+                    <Link href="/">
                       Connect Wallet
                       <Wallet className="h-4 w-4" />
-                    </a>
+                    </Link>
                   </Button>
                 </div>
 

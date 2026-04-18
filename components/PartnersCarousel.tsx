@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { sanityClient } from '@/sanity/lib/client';
@@ -129,7 +130,7 @@ export function PartnersCarousel() {
           Trusted by <span className="gradient-text">Leading Brands</span>
         </h2>
         <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-          We're partnering with major e-commerce platforms to bring verified receipts to
+          We&rsquo;re partnering with major e-commerce platforms to bring verified receipts to
           everyone
         </p>
       </div>
@@ -168,6 +169,15 @@ export function PartnersCarousel() {
         Preliminary agreements in motion with major e-commerce giants. More partners
         announced soon.
       </p>
+
+      <div className="mt-6 text-center">
+        <Link
+          href="/"
+          className="text-sm font-medium text-violet-400 transition-colors hover:text-violet-300"
+        >
+          Back to home
+        </Link>
+      </div>
     </section>
   );
 }

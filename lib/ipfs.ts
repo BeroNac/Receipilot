@@ -1,5 +1,14 @@
 // IPFS/Web3.Storage integration for NFT metadata and SVG storage
 
+function logError(message: string, error?: unknown) {
+  const detail = error instanceof Error ? `: ${error.message}` : '';
+  process.stderr.write(`${message}${detail}\n`);
+}
+
+function logWarn(message: string) {
+  process.stderr.write(`${message}\n`);
+}
+
 interface NFTMetadata {
   name: string;
   description: string;
@@ -27,7 +36,7 @@ export class IPFSStorage {
     this.web3StorageToken = process.env.WEB3_STORAGE_TOKEN || '';
     
     if (!this.web3StorageToken) {
-      console.warn('Web3.Storage token not configured. IPFS uploads will fail.');
+      logWarn('Web3.Storage token not configured. IPFS uploads will fail.');
     }
   }
 
@@ -120,8 +129,6 @@ export class IPFSStorage {
     metadataUrl: string;
   }> {
     try {
-      console.log('Uploading to IPFS...');
-
       // Generate SVG
       const svg = this.generateReceiptSVG(data);
       const _svgBlob = new Blob([svg], { type: 'image/svg+xml' });
@@ -164,7 +171,7 @@ export class IPFSStorage {
         metadataUrl,
       };
     } catch (error) {
-      console.error('IPFS upload failed:', error);
+      logError('IPFS upload failed', error);
       throw new Error('Failed to upload to IPFS');
     }
   }
@@ -183,7 +190,7 @@ export class IPFSStorage {
 
       return await response.text();
     } catch (error) {
-      console.error('IPFS fetch failed:', error);
+      logError('IPFS fetch failed', error);
       throw error;
     }
   }

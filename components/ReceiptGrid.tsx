@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-import { useReadContract } from 'wagmi';
 
 interface Receipt {
   tokenId: string;

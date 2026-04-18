@@ -15,7 +15,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="mb-4 text-3xl font-semibold">Our Privacy Promise</h2>
           <p className="text-muted-foreground">
-            At Receipilot, your privacy is paramount. We've designed our entire system
+            At Receipilot, your privacy is paramount. We&rsquo;ve designed our entire system
             around the principle that your personal data should never be stored on our
             servers.
           </p>
@@ -48,7 +48,7 @@ export default function PrivacyPage() {
               name
             </li>
             <li>
-              A zero-knowledge proof is generated using vlayer's technology to verify the
+              A zero-knowledge proof is generated using vlayer&rsquo;s technology to verify the
               DKIM signature
             </li>
             <li>
@@ -85,7 +85,7 @@ export default function PrivacyPage() {
             Client-Side Processing
           </h2>
           <p className="text-muted-foreground">
-            When you use the "Paste Text" option, all processing happens entirely in your
+            When you use the &quot;Paste Text&quot; option, all processing happens entirely in your
             browser. The text never leaves your computer until the final proof is
             submitted to the blockchain.
           </p>
@@ -152,7 +152,7 @@ export default function PrivacyPage() {
           <h2 className="mb-4 text-2xl font-semibold">Changes to This Policy</h2>
           <p className="text-muted-foreground">
             We may update this privacy policy from time to time. We will notify you of any
-            changes by posting the new policy on this page and updating the "Last updated"
+            changes by posting the new policy on this page and updating the &quot;Last updated&quot;
             date.
           </p>
         </section>

@@ -4,6 +4,11 @@ import { vlayerProver } from '@/lib/vlayer';
 import { ipfsStorage } from '@/lib/ipfs';
 import { saveProofRecord } from '@/lib/supabase';
 
+function logError(message: string, error?: unknown) {
+  const detail = error instanceof Error ? `: ${error.message}` : '';
+  process.stderr.write(`${message}${detail}\n`);
+}
+
 /**
  * POST /api/mint
  * Handles the complete minting flow:
@@ -45,8 +50,6 @@ export async function POST(request: NextRequest) {
       parsedReceipt = emailParser.parseTextEmail(content);
     }
 
-    console.log('Parsed receipt:', parsedReceipt);
-
     // Verify email with vlayer
     const { isValid, dkimProof, extractedData } = await vlayerProver.verifyEmail(
       content
@@ -86,7 +89,7 @@ export async function POST(request: NextRequest) {
         token_id: '', // Will be updated after minting
       });
     } catch (dbError) {
-      console.error('Database save failed:', dbError);
+      logError('Database save failed', dbError);
       // Continue even if DB fails - the on-chain data is what matters
     }
 
@@ -108,7 +111,7 @@ export async function POST(request: NextRequest) {
       message: 'Proof generated successfully. Ready to mint NFT.',
     });
   } catch (error) {
-    console.error('Mint API error:', error);
+    logError('Mint API error', error);
 
     return NextResponse.json(
       {

@@ -6,6 +6,11 @@ import { ipfsStorage } from '@/lib/ipfs';
 
 const _resend = new Resend(process.env.RESEND_API_KEY);
 
+function logError(message: string, error?: unknown) {
+  const detail = error instanceof Error ? `: ${error.message}` : '';
+  process.stderr.write(`${message}${detail}\n`);
+}
+
 /**
  * POST /api/forward-email
  * Handles forwarded emails from prove@receipilot.xyz
@@ -26,8 +31,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { from, to, subject, text, rawEmail } = body;
 
-    console.log('Received email forward from:', from);
-
     // Security check: Ensure this came from our forwarding service
     if (to !== process.env.NEXT_PUBLIC_FORWARD_EMAIL) {
       return NextResponse.json(
@@ -39,8 +42,6 @@ export async function POST(request: NextRequest) {
     // Parse the email to extract receipt data
     const emailContent = rawEmail || `From: ${from}\nTo: ${to}\nSubject: ${subject}\n\n${text}`;
     const parsedReceipt = emailParser.parseTextEmail(emailContent);
-
-    console.log('Parsed receipt:', parsedReceipt);
 
     // Verify email with vlayer ZK Email
     const { isValid, dkimProof, extractedData } = await vlayerProver.verifyEmail(
@@ -69,7 +70,6 @@ export async function POST(request: NextRequest) {
 
     // Calculate processing time
     const processingTime = Date.now() - startTime;
-    console.log(`Email processed in ${processingTime}ms`);
 
     // CRITICAL: Email content is automatically cleared by Node.js garbage collection
     // We don't store any email content beyond this point
@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
       message: 'Email processed successfully. Ready to mint NFT.',
     });
   } catch (error) {
-    console.error('Email processing error:', error);
+    logError('Email processing error', error);
 
     return NextResponse.json(
       {
