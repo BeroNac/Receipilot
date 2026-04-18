@@ -5,7 +5,7 @@ Powered by **[vlayer](https://vlayer.xyz)** — the leading ZK verifiable data i
 
 ---
 
-## 🌟 Vision
+## Vision
 
 **Receipilot** is more than an NFT project.  
 The **MVP** is just the entry point. The real vision is becoming the standard infrastructure for verifiable purchase proofs for e-commerce giants.
@@ -20,7 +20,7 @@ Users can also earn real value — their verified NFTs become valuable proof of 
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - Dynamic, visually premium SVG NFTs with automatic store logo, order details, and category detection (Physical / Digital / Virtual)
 - Multiple secure upload methods: `.eml` file, text paste, or email forwarding
@@ -39,7 +39,7 @@ Users can also earn real value — their verified NFTs become valuable proof of 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: Next.js 15 (App Router), TypeScript, Tailwind, shadcn/ui, Framer Motion
 - **Blockchain**: Base + Sepolia (Solidity 0.8.28)
@@ -50,7 +50,7 @@ Users can also earn real value — their verified NFTs become valuable proof of 
 
 ---
 
-## 🔒 Security & Privacy
+## Security & Privacy
 
 - Emails are processed securely and **deleted within seconds**
 - Only cryptographic proof hashes are stored on-chain
@@ -60,7 +60,7 @@ Users can also earn real value — their verified NFTs become valuable proof of 
 
 ---
 
-## 🚀 Roadmap
+## Roadmap
 
 **Phase 1 (MVP - Current)**  
 - Core proof generation + minting  
@@ -68,24 +68,24 @@ Users can also earn real value — their verified NFTs become valuable proof of 
 - Demo page  
 - Base mainnet deployment  
 
-**Phase 2 (Q2 2026)**  
+**Phase 2 (May 2026)**  
 - Mobile app (iOS & Android)  
 - Batch minting & premium features  
 - Stripe integration  
 
-**Phase 3 (Q3 2026)**  
+**Phase 3 (May 2026)**  
 - Enterprise API for e-commerce platforms  
 - Direct integrations with major retailers  
 - Warranty & loyalty program support  
 
-**Phase 4 (Q4 2026)**  
+**Phase 4 (June 2026)**  
 - Advanced cross-chain features  
 - AI receipt intelligence  
 - B2B partnerships with global retailers
 
 ---
 
-## 🤝 Built for vlayer Ecosystem
+## Built for vlayer Ecosystem
 
 Receipilot is a deep integration with vlayer’s primitives and is built to showcase the power of verifiable real-world data on-chain. We believe this project will drive significant consumer adoption to the vlayer ecosystem.
 
@@ -93,8 +93,7 @@ Receipilot is a deep integration with vlayer’s primitives and is built to show
 
 ## 📄 License
 
-Proprietary — All Rights Reserved © 2026 Receipilot
-
+MIT
 ---
 
 **Made with ❤️ for a more verifiable world.**
