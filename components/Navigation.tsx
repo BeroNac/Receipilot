@@ -37,15 +37,15 @@ export function Navigation() {
               <img src={siteConfig.logoImage} alt={siteConfig.name} className="h-6 w-auto mix-blend-multiply dark:mix-blend-screen" />
             ) : (
               <svg viewBox="0 0 36 36" className="h-6 w-6" fill="none">
-                <rect x="2" y="2" width="32" height="32" rx="4" stroke="#0f172a" strokeWidth="2.5" />
-                <line x1="2" y1="18" x2="34" y2="18" stroke="#0f172a" strokeWidth="2" />
-                <line x1="18" y1="2" x2="18" y2="34" stroke="#0f172a" strokeWidth="2" />
-                <line x1="6" y1="6" x2="30" y2="30" stroke="#38bdf8" strokeWidth="1.5" opacity="0.8" />
-                <line x1="30" y1="6" x2="6" y2="30" stroke="#38bdf8" strokeWidth="1.5" opacity="0.8" />
+                <rect x="2" y="2" width="32" height="32" rx="4" stroke="hsl(216 89% 35%)" strokeWidth="2.5" />
+                <line x1="2" y1="18" x2="34" y2="18" stroke="hsl(216 89% 35%)" strokeWidth="2" />
+                <line x1="18" y1="2" x2="18" y2="34" stroke="hsl(216 89% 35%)" strokeWidth="2" />
+                <line x1="6" y1="6" x2="30" y2="30" stroke="hsl(216 89% 35%)" strokeWidth="1.5" opacity="0.5" />
+                <line x1="30" y1="6" x2="6" y2="30" stroke="hsl(216 89% 35%)" strokeWidth="1.5" opacity="0.5" />
               </svg>
             )}
           </div>
-          <span className="font-logo text-2xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 to-sky-400 bg-clip-text text-transparent underline decoration-sky-400/40 underline-offset-[3px] decoration-[1.5px] dark:from-slate-100 dark:to-sky-400">
+          <span className="font-logo text-2xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 to-blue-600 bg-clip-text text-transparent underline decoration-blue-500/40 underline-offset-[3px] decoration-[1.5px] dark:from-slate-100 dark:to-blue-400">
             receipilot
           </span>
         </Link>

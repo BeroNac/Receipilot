@@ -9,7 +9,7 @@ export const siteConfig = {
   "tagline": "Turn Receipts into Verified NFTs",
   "description": "Turn any online purchase email into a beautiful, cryptographically verified NFT in seconds. Impossible to fake. Powered by vlayer ZK technology.",
   "receiptImage": "/receipt-card.png",
-  "logoImage": "/Untitled_design__11_.png",
+  "logoImage": "/logo.png",
   "favicon": "/favicon.ico",
   "ogImage": "/og-image.png",
   "hero": {
@@ -115,21 +115,78 @@ export const siteConfig = {
     "total": "$2,499.00",
     "email": "customer@example.com"
   },
+  "fonts": {
+    "logoFont": {
+      "type": "google",
+      "family": "Space Grotesk",
+      "url": ""
+    },
+    "bodyFont": {
+      "type": "google",
+      "family": "Inter",
+      "url": ""
+    }
+  },
   "partners": {
     "heading": "Trusted by",
     "headingHighlight": "Leading Brands",
     "subheading": "We're partnering with major e-commerce platforms to bring verified receipts to everyone",
     "note": "Preliminary agreements in motion with major e-commerce giants. More partners announced soon.",
     "brands": [
-      { "id": "1", "name": "Amazon", "logo": "/partners/amazon.svg", "isComingSoon": false },
-      { "id": "2", "name": "eBay", "logo": "/partners/ebay.svg", "isComingSoon": false },
-      { "id": "3", "name": "Nike", "logo": "/partners/nike.svg", "isComingSoon": false },
-      { "id": "4", "name": "Adidas", "logo": "/partners/adidas.svg", "isComingSoon": false },
-      { "id": "5", "name": "Steam", "logo": "/partners/steam.svg", "isComingSoon": false },
-      { "id": "6", "name": "Apple", "logo": "/partners/apple.svg", "isComingSoon": false },
-      { "id": "7", "name": "Best Buy", "logo": "/partners/bestbuy.svg", "isComingSoon": true },
-      { "id": "8", "name": "Target", "logo": "/partners/target.svg", "isComingSoon": true },
-      { "id": "9", "name": "Walmart", "logo": "/partners/walmart.svg", "isComingSoon": true }
+      {
+        "id": "1",
+        "name": "Amazon",
+        "logo": "/partners/amazon.svg",
+        "isComingSoon": false
+      },
+      {
+        "id": "2",
+        "name": "eBay",
+        "logo": "/partners/ebay.svg",
+        "isComingSoon": false
+      },
+      {
+        "id": "3",
+        "name": "Nike",
+        "logo": "/partners/nike.png",
+        "isComingSoon": true
+      },
+      {
+        "id": "4",
+        "name": "Adidas",
+        "logo": "/partners/adidas.svg",
+        "isComingSoon": false
+      },
+      {
+        "id": "5",
+        "name": "Steam",
+        "logo": "/partners/steam.svg",
+        "isComingSoon": false
+      },
+      {
+        "id": "6",
+        "name": "Apple",
+        "logo": "/partners/apple.svg",
+        "isComingSoon": false
+      },
+      {
+        "id": "7",
+        "name": "Best Buy",
+        "logo": "/partners/bestbuy.svg",
+        "isComingSoon": true
+      },
+      {
+        "id": "8",
+        "name": "Target",
+        "logo": "/partners/target.svg",
+        "isComingSoon": true
+      },
+      {
+        "id": "9",
+        "name": "Walmart",
+        "logo": "/partners/walmart.svg",
+        "isComingSoon": true
+      }
     ]
   }
 };

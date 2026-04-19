@@ -13,8 +13,24 @@ export async function POST(request: Request) {
     }
 
     // Validate file type
-    const allowedTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml', 'image/x-icon'];
-    if (!allowedTypes.includes(file.type)) {
+    const allowedImageTypes = ['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml', 'image/x-icon'];
+    const allowedFontTypes = [
+      'font/ttf', 'font/otf', 'font/woff', 'font/woff2',
+      'application/font-woff', 'application/font-woff2',
+      'application/x-font-ttf', 'application/x-font-otf',
+      'application/octet-stream', // some browsers send this for fonts
+    ];
+    const allowedFontExts = ['ttf', 'otf', 'woff', 'woff2'];
+    const ext = file.name.split('.').pop()?.toLowerCase() || '';
+
+    const isFontTarget = target === 'font-logo' || target === 'font-body';
+    const isFontExt = allowedFontExts.includes(ext);
+
+    if (isFontTarget) {
+      if (!isFontExt) {
+        return NextResponse.json({ error: 'Invalid font type. Use TTF, OTF, WOFF, or WOFF2.' }, { status: 400 });
+      }
+    } else if (!allowedImageTypes.includes(file.type)) {
       return NextResponse.json({ error: 'Invalid file type. Use PNG, JPG, WebP, SVG, or ICO.' }, { status: 400 });
     }
 
@@ -28,7 +44,6 @@ export async function POST(request: Request) {
 
     // Determine filename based on target
     let filename: string;
-    const ext = file.name.split('.').pop()?.toLowerCase() || 'png';
 
     switch (target) {
       case 'receipt':
@@ -48,6 +63,14 @@ export async function POST(request: Request) {
         const partnersDir = join(process.cwd(), 'public', 'partners');
         await mkdir(partnersDir, { recursive: true });
         filename = `partners/${safeName}`;
+        break;
+      }
+      case 'font-logo':
+      case 'font-body': {
+        const safeFontName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_').toLowerCase();
+        const fontsDir = join(process.cwd(), 'public', 'fonts');
+        await mkdir(fontsDir, { recursive: true });
+        filename = `fonts/${safeFontName}`;
         break;
       }
       default: {

@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
-import { Bricolage_Grotesque, Space_Grotesk } from 'next/font/google';
+import { Bricolage_Grotesque, Inter, Space_Grotesk } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import { Providers } from './providers';
 import { Toaster } from '@/components/ui/toaster';
 import { SiteLayout } from '@/components/SiteLayout';
+import { FontLoader } from '@/components/FontLoader';
+import { siteConfig } from '@/lib/site-config';
 
 const heroLight = localFont({
   src: [
@@ -33,6 +35,13 @@ const spaceGrotesk = Space_Grotesk({
   variable: '--font-syne',
   display: 'swap',
   weight: ['400', '600', '700'],
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
 });
 
 const bricolage = Bricolage_Grotesque({
@@ -85,7 +94,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${heroLight.variable} ${bricolage.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
+      <body className={`${heroLight.variable} ${bricolage.variable} ${spaceGrotesk.variable} ${inter.variable} font-sans antialiased`}>
+        <FontLoader logoFont={siteConfig.fonts.logoFont} bodyFont={siteConfig.fonts.bodyFont} />
         <Providers>
           <SiteLayout>{children}</SiteLayout>
           <Toaster />

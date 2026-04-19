@@ -13,11 +13,13 @@ export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [config, setConfig] = useState(siteConfig);
-  const [activeTab, setActiveTab] = useState<'brand' | 'hero' | 'content' | 'images' | 'faq' | 'partners'>('brand');
+  const [activeTab, setActiveTab] = useState<'brand' | 'hero' | 'content' | 'images' | 'faq' | 'partners' | 'fonts'>('brand');
   const [saving, setSaving] = useState(false);
   const { toast } = useToast();
   const receiptRef = useRef<HTMLInputElement>(null);
   const logoRef = useRef<HTMLInputElement>(null);
+  const fontLogoRef = useRef<HTMLInputElement>(null);
+  const fontBodyRef = useRef<HTMLInputElement>(null);
   const faviconRef = useRef<HTMLInputElement>(null);
   const ogRef = useRef<HTMLInputElement>(null);
 
@@ -104,6 +106,33 @@ export default function AdminPage() {
     );
   }
 
+  const handleFontUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: 'font-logo' | 'font-body') => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('target', target);
+    try {
+      const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (res.ok) {
+        const fontKey = target === 'font-logo' ? 'logoFont' : 'bodyFont';
+        setConfig((c) => ({
+          ...c,
+          fonts: {
+            ...c.fonts,
+            [fontKey]: { type: 'upload', family: file.name.replace(/\.[^.]+$/, ''), url: data.path },
+          },
+        }));
+        toast({ title: 'Font uploaded', description: `Saved as ${data.path}` });
+      } else {
+        toast({ title: 'Upload failed', description: data.error, variant: 'destructive' });
+      }
+    } catch {
+      toast({ title: 'Upload failed', variant: 'destructive' });
+    }
+  };
+
   const handlePartnerLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>, partnerIndex: number) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -130,6 +159,7 @@ export default function AdminPage() {
     { id: 'brand' as const, label: 'Brand', icon: Type },
     { id: 'hero' as const, label: 'Hero', icon: FileText },
     { id: 'images' as const, label: 'Images', icon: Image },
+    { id: 'fonts' as const, label: 'Fonts', icon: Type },
     { id: 'content' as const, label: 'Content', icon: Settings },
     { id: 'faq' as const, label: 'FAQ', icon: FileText },
     { id: 'partners' as const, label: 'Partners', icon: Briefcase },
@@ -476,6 +506,28 @@ export default function AdminPage() {
               </div>
             )}
 
+            {/* Fonts Tab */}
+            {activeTab === 'fonts' && (
+              <div className="space-y-6">
+                <FontSectionCard
+                  title="Logo Font"
+                  description="Font used for the logo text (receipilot) in the navigation and footer."
+                  currentFont={config.fonts.logoFont}
+                  uploadRef={fontLogoRef}
+                  onUpload={(e) => handleFontUpload(e, 'font-logo')}
+                  onChange={(font) => setConfig({ ...config, fonts: { ...config.fonts, logoFont: font } })}
+                />
+                <FontSectionCard
+                  title="Body Font"
+                  description="Font used for all body text, headings, and UI elements across the site."
+                  currentFont={config.fonts.bodyFont}
+                  uploadRef={fontBodyRef}
+                  onUpload={(e) => handleFontUpload(e, 'font-body')}
+                  onChange={(font) => setConfig({ ...config, fonts: { ...config.fonts, bodyFont: font } })}
+                />
+              </div>
+            )}
+
             {/* FAQ Tab */}
             {activeTab === 'faq' && (              <div className="space-y-6">
                 <SectionCard title="Frequently Asked Questions">
@@ -595,6 +647,122 @@ function ImageUploadRow({
           <Upload className="mr-2 h-4 w-4" />
           {current ? 'Replace Image' : 'Upload Image'}
         </Button>
+      </div>
+    </div>
+  );
+}
+
+// ── Font Section Card ────────────────────────────────────────
+
+const POPULAR_GOOGLE_FONTS = [
+  'Inter', 'Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Poppins',
+  'Raleway', 'Nunito', 'DM Sans', 'Plus Jakarta Sans', 'Outfit',
+  'Space Grotesk', 'Syne', 'Bricolage Grotesque', 'Geist', 'Figtree',
+];
+
+function FontSectionCard({
+  title,
+  description,
+  currentFont,
+  uploadRef,
+  onUpload,
+  onChange,
+}: {
+  title: string;
+  description: string;
+  currentFont: { type: string; family: string; url: string };
+  uploadRef: React.RefObject<HTMLInputElement>;
+  onUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (font: { type: string; family: string; url: string }) => void;
+}) {
+  const [googleInput, setGoogleInput] = useState(
+    currentFont.type === 'google' ? currentFont.family : ''
+  );
+
+  const applyGoogleFont = (family: string) => {
+    if (!family.trim()) return;
+    onChange({ type: 'google', family: family.trim(), url: '' });
+    setGoogleInput(family.trim());
+  };
+
+  return (
+    <div className="rounded-2xl border border-border bg-card p-6 space-y-5">
+      <div>
+        <h2 className="text-lg font-bold">{title}</h2>
+        <p className="mt-1 text-sm text-muted-foreground">{description}</p>
+      </div>
+
+      {/* Current status */}
+      <div className="flex items-center gap-3 rounded-xl bg-muted/60 px-4 py-3">
+        <span className="text-xs font-semibold uppercase text-muted-foreground">Active:</span>
+        <span
+          className="text-base font-semibold"
+          style={{ fontFamily: currentFont.type !== 'system' ? `'${currentFont.family}', system-ui` : 'system-ui' }}
+        >
+          {currentFont.family || 'System Default'} ({currentFont.type})
+        </span>
+        {currentFont.type !== 'system' && (
+          <button
+            onClick={() => onChange({ type: 'system', family: '', url: '' })}
+            className="ml-auto text-xs text-red-500 hover:text-red-600"
+          >
+            Reset to system
+          </button>
+        )}
+      </div>
+
+      {/* Google Font picker */}
+      <div className="space-y-3">
+        <Label className="text-sm font-semibold">Google Font</Label>
+        <div className="flex gap-2">
+          <Input
+            placeholder="e.g. Inter, Poppins, Raleway…"
+            value={googleInput}
+            onChange={(e) => setGoogleInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && applyGoogleFont(googleInput)}
+            className="flex-1"
+          />
+          <Button variant="outline" size="sm" onClick={() => applyGoogleFont(googleInput)}>
+            Apply
+          </Button>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {POPULAR_GOOGLE_FONTS.map((f) => (
+            <button
+              key={f}
+              onClick={() => applyGoogleFont(f)}
+              className={`rounded-lg border px-3 py-1 text-xs transition-colors ${
+                currentFont.family === f && currentFont.type === 'google'
+                  ? 'border-primary bg-primary/10 text-primary font-semibold'
+                  : 'border-border text-muted-foreground hover:border-primary/40 hover:text-foreground'
+              }`}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Upload custom font */}
+      <div className="space-y-2">
+        <Label className="text-sm font-semibold">Upload Custom Font</Label>
+        <p className="text-xs text-muted-foreground">Supports TTF, OTF, WOFF, WOFF2 files (max 5MB).</p>
+        <div className="flex items-center gap-3">
+          <input
+            ref={uploadRef}
+            type="file"
+            accept=".ttf,.otf,.woff,.woff2"
+            className="hidden"
+            onChange={onUpload}
+          />
+          <Button variant="outline" size="sm" onClick={() => uploadRef.current?.click()}>
+            <Upload className="mr-2 h-4 w-4" />
+            {currentFont.type === 'upload' ? 'Replace Font' : 'Upload Font'}
+          </Button>
+          {currentFont.type === 'upload' && currentFont.url && (
+            <code className="rounded bg-muted px-2 py-0.5 text-xs">{currentFont.url}</code>
+          )}
+        </div>
       </div>
     </div>
   );

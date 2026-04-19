@@ -6,48 +6,48 @@
   :root {
     --font-hero: 'HeroLight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-bricolage: 'Bricolage Grotesque', system-ui, sans-serif;
-    --background: 150 15% 96%;
-    --foreground: 220 20% 14%;
-    --card: 150 10% 94%;
-    --card-foreground: 220 20% 14%;
-    --popover: 150 15% 96%;
-    --popover-foreground: 220 20% 14%;
-    --primary: 152 76% 42%;
+    --background: 216 20% 97%;
+    --foreground: 220 25% 12%;
+    --card: 216 15% 95%;
+    --card-foreground: 220 25% 12%;
+    --popover: 216 20% 97%;
+    --popover-foreground: 220 25% 12%;
+    --primary: 216 89% 35%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 150 10% 90%;
-    --secondary-foreground: 220 15% 30%;
-    --muted: 150 10% 90%;
-    --muted-foreground: 220 10% 44%;
-    --accent: 152 76% 42%;
-    --accent-foreground: 220 20% 14%;
+    --secondary: 216 15% 91%;
+    --secondary-foreground: 220 20% 30%;
+    --muted: 216 15% 91%;
+    --muted-foreground: 220 12% 46%;
+    --accent: 216 89% 35%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 55%;
     --destructive-foreground: 0 0% 100%;
-    --border: 150 10% 84%;
-    --input: 150 10% 84%;
-    --ring: 152 76% 42%;
+    --border: 216 15% 86%;
+    --input: 216 15% 86%;
+    --ring: 216 89% 35%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 220 14% 8%;
-    --foreground: 30 15% 92%;
-    --card: 220 12% 11%;
-    --card-foreground: 30 15% 92%;
-    --popover: 220 12% 11%;
-    --popover-foreground: 30 15% 92%;
-    --primary: 152 70% 48%;
+    --background: 220 18% 8%;
+    --foreground: 216 15% 92%;
+    --card: 220 16% 11%;
+    --card-foreground: 216 15% 92%;
+    --popover: 220 16% 11%;
+    --popover-foreground: 216 15% 92%;
+    --primary: 216 80% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 8% 18%;
-    --secondary-foreground: 150 10% 90%;
-    --muted: 220 8% 18%;
+    --secondary: 220 10% 18%;
+    --secondary-foreground: 216 15% 88%;
+    --muted: 220 10% 18%;
     --muted-foreground: 220 8% 55%;
-    --accent: 152 70% 48%;
-    --accent-foreground: 150 10% 92%;
+    --accent: 216 80% 60%;
+    --accent-foreground: 216 15% 92%;
     --destructive: 0 62% 40%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 8% 20%;
-    --input: 220 8% 20%;
-    --ring: 152 70% 48%;
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 216 80% 60%;
   }
 }
 
@@ -61,20 +61,20 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-hero), system-ui, sans-serif;
+    font-family: var(--font-body-dynamic, var(--font-inter), var(--font-hero), system-ui, sans-serif);
     @apply tracking-tight font-bold;
   }
 }
 
-/* Typography - HeroLight as main font */
+/* Typography — Inter as main body font with dynamic override support */
 body {
-  font-family: var(--font-hero), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-body-dynamic, var(--font-inter), var(--font-hero), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
   letter-spacing: -0.01em;
 }
 
 /* Logo Font */
 .font-logo {
-  font-family: var(--font-syne), system-ui, sans-serif;
+  font-family: var(--font-logo-dynamic, var(--font-syne), system-ui, sans-serif);
 }
 
 /* Dot Grid Background Pattern */
