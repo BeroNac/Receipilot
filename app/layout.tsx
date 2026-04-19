@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Bricolage_Grotesque, Syne } from 'next/font/google';
+import { Bricolage_Grotesque, Space_Grotesk } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import { Providers } from './providers';
@@ -28,11 +28,11 @@ const heroLight = localFont({
   display: 'swap',
 });
 
-const syne = Syne({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-syne',
   display: 'swap',
-  weight: ['400', '600', '700', '800'],
+  weight: ['400', '600', '700'],
 });
 
 const bricolage = Bricolage_Grotesque({
@@ -85,7 +85,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${heroLight.variable} ${bricolage.variable} ${syne.variable} font-sans antialiased`}>
+      <body className={`${heroLight.variable} ${bricolage.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
         <Providers>
           <SiteLayout>{children}</SiteLayout>
           <Toaster />
