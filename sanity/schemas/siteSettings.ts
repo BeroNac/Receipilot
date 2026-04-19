@@ -16,7 +16,7 @@ export default defineType({
       title: 'Site Description',
       type: 'text',
       rows: 2,
-      initialValue: 'Turn any online purchase email into a beautiful, cryptographically verified NFT in seconds — impossible to fake.',
+      initialValue: 'Turn any online purchase email into a beautiful, cryptographically verified NFT in seconds. Impossible to fake.',
     }),
     defineField({
       name: 'logo',

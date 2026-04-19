@@ -1,15 +1,46 @@
 import type { Metadata } from 'next';
+import { Bricolage_Grotesque } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import { Providers } from './providers';
 import { Toaster } from '@/components/ui/toaster';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 
+const heroLight = localFont({
+  src: [
+    {
+      path: '../components/ui/HeroLight-Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../components/ui/HeroLight-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../components/ui/HeroLight-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-hero',
+  display: 'swap',
+});
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-bricolage',
+  display: 'swap',
+  weight: ['400', '600', '700', '800'],
+});
+
 
 export const metadata: Metadata = {
   title: 'Receipilot - Turn Receipts into Verified NFTs',
   description:
-    'Turn any online purchase email into a beautiful, cryptographically verified NFT in seconds — impossible to fake. Powered by vlayer ZK technology.',
+    'Turn any online purchase email into a beautiful, cryptographically verified NFT in seconds. Impossible to fake. Powered by vlayer ZK technology.',
   keywords: [
     'NFT',
     'receipt',
@@ -47,8 +78,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
-      <body className="font-sans antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${heroLight.variable} ${bricolage.variable} font-sans antialiased`}>
         <Providers>
           <div className="flex min-h-screen flex-col bg-background">
             <Navigation />

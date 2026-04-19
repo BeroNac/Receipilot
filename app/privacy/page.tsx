@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="glass-effect rounded-2xl p-8">
+        <section className="clean-card rounded-2xl p-8">
           <h2 className="mb-4 text-2xl font-semibold text-blue-600 dark:text-blue-400">
             What We NEVER Store
           </h2>
@@ -80,8 +80,8 @@ export default function PrivacyPage() {
           </ul>
         </section>
 
-        <section className="glass-effect rounded-2xl p-8">
-          <h2 className="mb-4 text-2xl font-semibold text-violet-600 dark:text-violet-400">
+        <section className="clean-card rounded-2xl p-8">
+          <h2 className="mb-4 text-2xl font-semibold text-primary">
             Client-Side Processing
           </h2>
           <p className="text-muted-foreground">
@@ -148,7 +148,7 @@ export default function PrivacyPage() {
           </p>
         </section>
 
-        <section className="glass-effect rounded-2xl p-8">
+        <section className="clean-card rounded-2xl p-8">
           <h2 className="mb-4 text-2xl font-semibold">Changes to This Policy</h2>
           <p className="text-muted-foreground">
             We may update this privacy policy from time to time. We will notify you of any

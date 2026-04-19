@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { SearchBar } from '@/components/SearchBar';
 import { ReceiptGrid } from '@/components/ReceiptGrid';
+import { WalletConnectButton } from '@/components/WalletConnectButton';
 import { useAccount } from 'wagmi';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export default function MyReceiptsPage() {
   const { address, isConnected } = useAccount();
@@ -33,7 +33,7 @@ export default function MyReceiptsPage() {
               Connect your wallet to view your verified receipt NFTs
             </p>
           </div>
-          <ConnectButton />
+          <WalletConnectButton label="Connect Wallet" size="xl" />
         </div>
       </div>
     );
@@ -43,7 +43,7 @@ export default function MyReceiptsPage() {
     <div className="container mx-auto px-4 py-20">
       <div className="mb-12">
         <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-          My <span className="gradient-text">Receipts</span>
+          My <span className="text-primary">Receipts</span>
         </h1>
         <p className="mb-8 text-lg text-muted-foreground">
           All your verified receipt NFTs in one place

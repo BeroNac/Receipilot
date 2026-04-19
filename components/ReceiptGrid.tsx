@@ -144,7 +144,7 @@ export function ReceiptGrid({ address, searchQuery }: ReceiptGridProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: index * 0.1 }}
-          className="glass-effect group relative overflow-hidden rounded-2xl p-6 transition-all hover:scale-105 hover:shadow-2xl"
+          className="clean-card group relative overflow-hidden rounded-2xl p-6 transition-all hover:scale-[1.02]"
         >
           <div
             className={`mb-4 h-12 w-12 rounded-full bg-gradient-to-br ${getCategoryColor(
@@ -170,7 +170,7 @@ export function ReceiptGrid({ address, searchQuery }: ReceiptGridProps) {
             </div>
           </div>
 
-          <div className="mt-6 rounded-lg bg-gradient-to-r from-blue-500 to-violet-500 p-3 text-center text-xs font-bold text-white">
+          <div className="mt-6 rounded-lg bg-primary p-3 text-center text-xs font-bold text-primary-foreground">
             VERIFIED BY VLAYER
           </div>
 

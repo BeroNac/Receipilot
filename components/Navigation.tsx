@@ -2,16 +2,17 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useTheme } from 'next-themes';
-import { Moon, Sun, Menu, X, Receipt } from 'lucide-react';
+import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useAccount } from 'wagmi';
 import { cn } from '@/lib/utils';
-import { isWalletConnectEnabled } from '@/lib/wagmi-config';
+import { WalletConnectButton } from './WalletConnectButton';
 
 export function Navigation() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+  const { isConnected } = useAccount();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -27,14 +28,21 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-white/5 bg-background/80 backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600">
-            <Receipt className="h-5 w-5 text-white" />
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="relative flex h-6 w-6 items-center justify-center">
+            {/* Geometric crossed lines logo */}
+            <svg viewBox="0 0 36 36" className="h-6 w-6" fill="none">
+              <rect x="2" y="2" width="32" height="32" rx="4" stroke="hsl(152 76% 42%)" strokeWidth="2.5" />
+              <line x1="2" y1="18" x2="34" y2="18" stroke="hsl(152 76% 42%)" strokeWidth="2" />
+              <line x1="18" y1="2" x2="18" y2="34" stroke="hsl(152 76% 42%)" strokeWidth="2" />
+              <line x1="6" y1="6" x2="30" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
+              <line x1="30" y1="6" x2="6" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
+            </svg>
           </div>
-          <span className="text-xl font-bold tracking-tight">
-            Recei<span className="gradient-text">pilot</span>
+          <span className="font-logo text-2xl font-extrabold tracking-tight text-foreground">
+            Receipilot
           </span>
         </Link>
 
@@ -46,8 +54,8 @@ export function Navigation() {
               className={cn(
                 'rounded-lg px-4 py-2 text-sm font-medium transition-all',
                 pathname === link.href
-                  ? 'bg-violet-500/10 text-violet-400'
-                  : 'text-muted-foreground hover:bg-white/5 hover:text-white'
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
               )}
             >
               {link.label}
@@ -58,7 +66,7 @@ export function Navigation() {
         <div className="flex items-center space-x-3">
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="hidden rounded-lg p-2 text-muted-foreground transition-colors hover:bg-white/5 hover:text-white md:block"
+            className="hidden rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:block"
             aria-label="Toggle theme"
           >
             {!mounted ? (
@@ -69,21 +77,14 @@ export function Navigation() {
               <Moon className="h-5 w-5" />
             )}
           </button>
-          <div className="hidden md:block [&>*]:!rounded-lg">
-            {mounted && isWalletConnectEnabled ? (
-              <ConnectButton />
-            ) : (
-              <button
-                className="rounded-lg bg-cyan-400 px-4 py-2 text-sm font-semibold text-black opacity-80"
-                type="button"
-              >
-                Connect Wallet
-              </button>
-            )}
-          </div>
+          {mounted && !isConnected && (
+            <div className="hidden md:block">
+              <WalletConnectButton label="Connect Wallet" size="sm" />
+            </div>
+          )}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="rounded-lg p-2 text-muted-foreground hover:bg-white/5 md:hidden"
+            className="rounded-lg p-2 text-muted-foreground hover:bg-muted md:hidden"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
@@ -113,18 +114,11 @@ export function Navigation() {
                 {link.label}
               </Link>
             ))}
-            <div className="pt-4">
-              {isWalletConnectEnabled ? (
-                <ConnectButton />
-              ) : (
-                <button
-                  className="w-full rounded-lg bg-cyan-400 px-4 py-2 text-sm font-semibold text-black opacity-80"
-                  type="button"
-                >
-                  Connect Wallet
-                </button>
-              )}
-            </div>
+            {!isConnected && (
+              <div className="pt-4">
+                <WalletConnectButton label="Connect Wallet" size="lg" fullWidth />
+              </div>
+            )}
           </div>
         </div>
       )}

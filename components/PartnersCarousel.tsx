@@ -134,7 +134,7 @@ export function PartnersCarousel() {
     <section className="container mx-auto px-4 py-20">
       <div className="mb-12 text-center">
         <h2 className="mb-4 text-3xl font-bold md:text-5xl">
-          Trusted by <span className="gradient-text">Leading Brands</span>
+          Trusted by <span className="text-primary">Leading Brands</span>
         </h2>
         <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
           We&rsquo;re partnering with major e-commerce platforms to bring verified receipts to
@@ -157,10 +157,10 @@ export function PartnersCarousel() {
           {[...partners, ...partners].map((partner, index) => (
             <div
               key={`${partner._id}-${index}`}
-              className="glass-effect relative flex h-24 w-40 flex-shrink-0 items-center justify-center rounded-xl p-4"
+              className="clean-card relative flex h-24 w-40 flex-shrink-0 items-center justify-center rounded-xl p-4"
             >
               {partner.isComingSoon && (
-                <div className="absolute right-2 top-2 rounded-full bg-violet-100 px-2 py-0.5 text-xs font-medium text-violet-700 dark:bg-violet-900/30 dark:text-violet-300">
+                <div className="absolute right-2 top-2 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
                   Soon
                 </div>
               )}
@@ -180,7 +180,7 @@ export function PartnersCarousel() {
       <div className="mt-6 text-center">
         <Link
           href="/"
-          className="text-sm font-medium text-violet-400 transition-colors hover:text-violet-300"
+          className="text-sm font-medium text-primary transition-colors hover:text-primary/80"
         >
           Back to home
         </Link>

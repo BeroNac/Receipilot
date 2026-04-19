@@ -24,7 +24,7 @@ export default defineType({
       title: 'Subheadline',
       type: 'text',
       rows: 2,
-      initialValue: 'Transform any online purchase email into a cryptographically verified NFT in seconds — impossible to fake, forever on-chain.',
+      initialValue: 'Transform any online purchase email into a cryptographically verified NFT in seconds. Impossible to fake, forever on-chain.',
     }),
     defineField({
       name: 'features',

@@ -1,21 +1,25 @@
 import Link from 'next/link';
-import { Github, Twitter, Mail, Receipt } from 'lucide-react';
+import { Github, Twitter, Mail } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/5 bg-black/20">
+    <footer className="border-t border-border bg-card/50">
       <div className="container mx-auto px-4 py-16">
         <div className="grid gap-12 md:grid-cols-4">
           {/* Brand */}
           <div>
-            <div className="mb-4 flex items-center space-x-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600">
-                <Receipt className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold tracking-tight">
-                Recei<span className="gradient-text">pilot</span>
+            <div className="mb-4 flex items-center gap-2.5">
+              <svg viewBox="0 0 36 36" className="h-6 w-6" fill="none">
+                <rect x="2" y="2" width="32" height="32" rx="4" stroke="hsl(152 76% 42%)" strokeWidth="2.5" />
+                <line x1="2" y1="18" x2="34" y2="18" stroke="hsl(152 76% 42%)" strokeWidth="2" />
+                <line x1="18" y1="2" x2="18" y2="34" stroke="hsl(152 76% 42%)" strokeWidth="2" />
+                <line x1="6" y1="6" x2="30" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
+                <line x1="30" y1="6" x2="6" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
+              </svg>
+              <span className="font-logo text-2xl font-extrabold tracking-tight text-foreground">
+                Receipilot
               </span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
@@ -34,7 +38,7 @@ export function Footer() {
                 { href: '/my-receipts', label: 'My Receipts' },
               ].map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/70 transition-colors hover:text-violet-400">
+                  <Link href={link.href} className="text-sm text-foreground/70 transition-colors hover:text-primary">
                     {link.label}
                   </Link>
                 </li>
@@ -47,12 +51,12 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">Resources</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/privacy" className="text-sm text-white/70 transition-colors hover:text-violet-400">
+                <Link href="/privacy" className="text-sm text-foreground/70 transition-colors hover:text-primary">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <a href="mailto:hello@receipilot.xyz" className="text-sm text-white/70 transition-colors hover:text-violet-400">
+                <a href="mailto:hello@receipilot.xyz" className="text-sm text-foreground/70 transition-colors hover:text-primary">
                   Contact Us
                 </a>
               </li>
@@ -61,7 +65,7 @@ export function Footer() {
                   href="https://github.com/receipilot"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-white/70 transition-colors hover:text-violet-400"
+                  className="text-sm text-foreground/70 transition-colors hover:text-primary"
                 >
                   Documentation
                 </a>
@@ -83,7 +87,7 @@ export function Footer() {
                   href={social.href}
                   target={social.href.startsWith('http') ? '_blank' : undefined}
                   rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-muted-foreground transition-all hover:border-violet-500/50 hover:bg-violet-500/10 hover:text-violet-400"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground transition-all hover:border-primary/50 hover:text-primary"
                   aria-label={social.label}
                 >
                   <social.icon className="h-4 w-4" />
@@ -97,7 +101,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 border-t border-white/5 pt-8">
+        <div className="mt-12 border-t border-border pt-8">
           <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground md:flex-row">
             <p>
               © {currentYear} Receipilot. Powered by{' '}
@@ -105,7 +109,7 @@ export function Footer() {
                 href="https://vlayer.xyz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-violet-400 hover:underline"
+                className="text-primary hover:underline"
               >
                 vlayer
               </a>

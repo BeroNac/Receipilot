@@ -4,26 +4,26 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         default:
-          'bg-violet-600 text-white hover:bg-violet-700 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40',
+          'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-primary/40',
         destructive:
           'bg-red-600 text-white shadow-lg hover:bg-red-700',
         outline:
-          'border border-violet-500/50 bg-transparent text-violet-400 hover:bg-violet-500/10 hover:border-violet-400',
+          'border border-primary/50 bg-transparent text-primary hover:bg-primary/10 hover:border-primary',
         secondary:
-          'bg-white/5 text-white border border-white/10 hover:bg-white/10',
+          'bg-secondary text-secondary-foreground border border-border hover:bg-secondary/80',
         ghost: 
-          'text-white/70 hover:bg-white/5 hover:text-white',
+          'text-muted-foreground hover:bg-muted hover:text-foreground',
         link: 
-          'text-violet-400 underline-offset-4 hover:underline',
+          'text-primary underline-offset-4 hover:underline',
         gradient: 
-          'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-lg shadow-violet-500/30 hover:shadow-violet-500/50 hover:from-violet-500 hover:to-indigo-500',
+          'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:from-emerald-500 hover:to-teal-500',
         glow:
-          'bg-violet-600 text-white shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:bg-violet-500',
+          'bg-primary text-primary-foreground shadow-[0_0_20px_hsl(152_76%_42%/0.4)] hover:shadow-[0_0_30px_hsl(152_76%_42%/0.6)] hover:bg-primary/90',
       },
       size: {
         default: 'h-10 px-5 text-sm',

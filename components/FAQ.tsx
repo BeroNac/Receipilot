@@ -8,7 +8,6 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { sanityClient } from '@/sanity/lib/client';
-import { HelpCircle } from 'lucide-react';
 
 interface FAQItem {
   _id: string;
@@ -93,12 +92,11 @@ export function FAQ() {
   return (
     <section className="container mx-auto px-4 py-20">
       <div className="mb-12 text-center">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-violet-100 px-4 py-2 text-sm font-medium text-violet-700 dark:bg-violet-900/30 dark:text-violet-300">
-          <HelpCircle className="h-4 w-4" />
+        <div className="mb-4 inline-flex items-center rounded-full border border-border bg-muted px-4 py-2 text-sm font-medium text-muted-foreground">
           Got Questions?
         </div>
         <h2 className="mb-4 text-3xl font-bold md:text-5xl">
-          Frequently Asked <span className="gradient-text">Questions</span>
+          Frequently Asked <span className="text-primary">Questions</span>
         </h2>
         <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
           Everything you need to know about Receipilot
@@ -118,9 +116,9 @@ export function FAQ() {
               <AccordionItem
                 key={faq._id}
                 value={faq._id}
-                className="glass-effect rounded-xl border-none px-6 data-[state=open]:shadow-lg"
+                className="clean-card border-none px-6 data-[state=open]:shadow-sm"
               >
-                <AccordionTrigger className="text-left text-base font-semibold hover:text-blue-600 hover:no-underline dark:hover:text-blue-400">
+                <AccordionTrigger className="text-left text-base font-semibold hover:text-primary hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed">

@@ -102,7 +102,7 @@ export function UploadFlow() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="glass-effect rounded-2xl p-8"
+              className="clean-card rounded-2xl p-8"
             >
               <div className="mb-6">
                 <h3 className="mb-2 text-2xl font-semibold">Upload Receipt Email</h3>
@@ -150,7 +150,7 @@ export function UploadFlow() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="glass-effect rounded-2xl p-8"
+              className="clean-card rounded-2xl p-8"
             >
               <div className="mb-6">
                 <h3 className="mb-2 text-2xl font-semibold">Paste Email Content</h3>
@@ -192,12 +192,12 @@ export function UploadFlow() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="glass-effect rounded-2xl p-8"
+              className="clean-card rounded-2xl p-8"
             >
               <div className="mb-6">
                 <h3 className="mb-2 text-2xl font-semibold">Forward to Our Address</h3>
                 <p className="text-sm text-muted-foreground">
-                  The most secure and convenient method — just forward your receipt email
+                  The most secure and convenient method. Just forward your receipt email
                 </p>
               </div>
 
@@ -233,8 +233,8 @@ export function UploadFlow() {
                   </ol>
                 </div>
 
-                <div className="rounded-lg border border-violet-200 bg-violet-50 p-4 dark:border-violet-800 dark:bg-violet-900/20">
-                  <h4 className="mb-2 flex items-center gap-2 font-semibold text-violet-700 dark:text-violet-300">
+                <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+                  <h4 className="mb-2 flex items-center gap-2 font-semibold text-primary">
                     <svg
                       className="h-5 w-5"
                       fill="none"

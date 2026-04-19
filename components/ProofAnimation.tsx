@@ -154,7 +154,7 @@ export function ProofAnimation({
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
               >
-                <div className="mb-2 text-6xl font-bold gradient-text">
+                <div className="mb-2 text-6xl font-bold text-primary">
                   {Math.round(progress)}%
                 </div>
                 <div className="text-sm text-muted-foreground">

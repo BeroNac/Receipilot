@@ -7,7 +7,6 @@ import { Button } from './ui/button';
 import { 
   Mail, 
   Shield, 
-  Sparkles, 
   CheckCircle2, 
   Wallet,
   ArrowRight,
@@ -120,7 +119,7 @@ export function Demo() {
           className="nft-card p-6"
         >
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
               <Mail className="h-5 w-5 text-white" />
             </div>
             <div>
@@ -133,7 +132,7 @@ export function Demo() {
             <div className="border-b border-white/10 pb-3">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">From:</span>
-                <span className="text-violet-400">noreply@apple.com</span>
+                <span className="text-primary">noreply@apple.com</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Subject:</span>
@@ -182,14 +181,14 @@ export function Demo() {
                 exit={{ opacity: 0 }}
                 className="flex h-full flex-col items-center justify-center py-12 text-center"
               >
-                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600/20 to-indigo-600/20 border border-violet-500/30">
-                  <Sparkles className="h-10 w-10 text-violet-400" />
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-border bg-muted">
+                  <ArrowRight className="h-10 w-10 text-primary" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold">Ready to Mint</h3>
                 <p className="mb-6 max-w-xs text-sm text-muted-foreground">
                   Click below to simulate the complete NFT minting process
                 </p>
-                <Button onClick={handleStart} variant="glow" size="lg" className="gap-2">
+                <Button onClick={handleStart} size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
                   Start Demo
                   <ArrowRight className="h-4 w-4" />
                 </Button>
@@ -257,9 +256,9 @@ export function Demo() {
                       key={s}
                       className={`h-2 w-8 rounded-full transition-all ${
                         step === s
-                          ? 'bg-violet-500 animate-pulse'
+                          ? 'bg-primary animate-pulse'
                           : ['verifying', 'generating', 'minting'].indexOf(step) > i
-                          ? 'bg-violet-500'
+                          ? 'bg-primary'
                           : 'bg-white/10'
                       }`}
                     />
@@ -295,7 +294,7 @@ export function Demo() {
                 <div className="mb-6 space-y-3 rounded-xl bg-black/30 p-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">Token ID</span>
-                    <span className="font-mono font-bold text-violet-400">{MOCK_NFT.tokenId}</span>
+                    <span className="font-mono font-bold text-primary">{MOCK_NFT.tokenId}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-muted-foreground">Network</span>
@@ -308,7 +307,7 @@ export function Demo() {
                     <span className="text-sm text-muted-foreground">Transaction</span>
                     <button
                       onClick={() => handleCopy('0x7f9a3b2c1d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a')}
-                      className="flex items-center gap-1 font-mono text-sm text-violet-400 hover:text-violet-300"
+                      className="flex items-center gap-1 font-mono text-sm text-primary hover:text-primary/80"
                     >
                       {MOCK_NFT.txHash}
                       <Copy className="h-3 w-3" />
@@ -367,8 +366,8 @@ export function Demo() {
             key={i}
             className="flex items-center gap-4 rounded-xl border border-white/5 bg-white/[0.02] p-4"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10">
-              <item.icon className="h-5 w-5 text-violet-400" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+              <item.icon className="h-5 w-5 text-primary" />
             </div>
             <div>
               <h4 className="font-semibold">{item.title}</h4>
