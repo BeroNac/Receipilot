@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Github, Twitter, Mail } from 'lucide-react';
+import { siteConfig } from '@/lib/site-config';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,13 +12,17 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="mb-4 flex items-center gap-2.5">
-              <svg viewBox="0 0 36 36" className="h-6 w-6" fill="none">
-                <rect x="2" y="2" width="32" height="32" rx="4" stroke="hsl(152 76% 42%)" strokeWidth="2.5" />
-                <line x1="2" y1="18" x2="34" y2="18" stroke="hsl(152 76% 42%)" strokeWidth="2" />
-                <line x1="18" y1="2" x2="18" y2="34" stroke="hsl(152 76% 42%)" strokeWidth="2" />
-                <line x1="6" y1="6" x2="30" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
-                <line x1="30" y1="6" x2="6" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
-              </svg>
+              {siteConfig.logoImage ? (
+                <img src={siteConfig.logoImage} alt={siteConfig.name} className="h-6 w-auto" />
+              ) : (
+                <svg viewBox="0 0 36 36" className="h-6 w-6" fill="none">
+                  <rect x="2" y="2" width="32" height="32" rx="4" stroke="hsl(152 76% 42%)" strokeWidth="2.5" />
+                  <line x1="2" y1="18" x2="34" y2="18" stroke="hsl(152 76% 42%)" strokeWidth="2" />
+                  <line x1="18" y1="2" x2="18" y2="34" stroke="hsl(152 76% 42%)" strokeWidth="2" />
+                  <line x1="6" y1="6" x2="30" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
+                  <line x1="30" y1="6" x2="6" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
+                </svg>
+              )}
               <span className="font-logo text-2xl font-extrabold tracking-tight text-foreground">
                 Receipilot
               </span>
@@ -104,15 +109,16 @@ export function Footer() {
         <div className="mt-12 border-t border-border pt-8">
           <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground md:flex-row">
             <p>
-              © {currentYear} Receipilot. Powered by{' '}
-              <a
-                href="https://vlayer.xyz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
-                vlayer
-              </a>
+              {(() => {
+                const text = (siteConfig.footer?.copyright || `© {year} ${siteConfig.name}. All rights reserved.`).replace('{year}', String(currentYear));
+                const linkText = siteConfig.footer?.copyrightLinkText;
+                const linkUrl = siteConfig.footer?.copyrightLinkUrl;
+                if (linkText && linkUrl && text.includes(linkText)) {
+                  const parts = text.split(linkText);
+                  return <>{parts[0]}<a href={linkUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{linkText}</a>{parts[1]}</>;
+                }
+                return text;
+              })()}
             </p>
             <div className="flex items-center gap-4 text-xs">
               <span className="flex items-center gap-1.5">

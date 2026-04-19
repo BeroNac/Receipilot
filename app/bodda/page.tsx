@@ -16,7 +16,10 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<'brand' | 'hero' | 'content' | 'images' | 'faq'>('brand');
   const [saving, setSaving] = useState(false);
   const { toast } = useToast();
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const receiptRef = useRef<HTMLInputElement>(null);
+  const logoRef = useRef<HTMLInputElement>(null);
+  const faviconRef = useRef<HTMLInputElement>(null);
+  const ogRef = useRef<HTMLInputElement>(null);
 
   const handleLogin = () => {
     // Password is checked client-side for simplicity — this is an internal tool
@@ -62,9 +65,10 @@ export default function AdminPage() {
       });
       const data = await res.json();
       if (res.ok) {
-        if (target === 'receipt') {
-          setConfig({ ...config, receiptImage: data.path });
-        }
+        if (target === 'receipt') setConfig((c) => ({ ...c, receiptImage: data.path }));
+        if (target === 'logo') setConfig((c) => ({ ...c, logoImage: data.path }));
+        if (target === 'favicon') setConfig((c) => ({ ...c, favicon: data.path }));
+        if (target === 'og') setConfig((c) => ({ ...c, ogImage: data.path }));
         toast({ title: 'Image uploaded', description: `Saved as ${data.path}` });
       } else {
         toast({ title: 'Upload failed', description: data.error, variant: 'destructive' });
@@ -173,9 +177,15 @@ export default function AdminPage() {
                   <FieldTextarea label="Site Description (SEO)" value={config.description} onChange={(v) => setConfig({ ...config, description: v })} />
                 </SectionCard>
 
-                <SectionCard title="Contact">
+                <SectionCard title="Contact & Footer">
                   <Field label="Contact Email" value={config.footer.email} onChange={(v) => setConfig({ ...config, footer: { ...config.footer, email: v } })} />
-                  <Field label="Forward Email" value={config.footer.forwardEmail} onChange={(v) => setConfig({ ...config, footer: { ...config.footer, forwardEmail: v } })} />
+                  <Field label="Forward-to Email" value={config.footer.forwardEmail} onChange={(v) => setConfig({ ...config, footer: { ...config.footer, forwardEmail: v } })} />
+                  <Field label="Footer Description" value={config.footer.description} onChange={(v) => setConfig({ ...config, footer: { ...config.footer, description: v } })} />
+                  <Field label="Copyright Text (use {year} for current year)" value={config.footer.copyright} onChange={(v) => setConfig({ ...config, footer: { ...config.footer, copyright: v } })} />
+                  <div className="grid grid-cols-2 gap-4">
+                    <Field label="Copyright Link Text" value={config.footer.copyrightLinkText} onChange={(v) => setConfig({ ...config, footer: { ...config.footer, copyrightLinkText: v } })} />
+                    <Field label="Copyright Link URL" value={config.footer.copyrightLinkUrl} onChange={(v) => setConfig({ ...config, footer: { ...config.footer, copyrightLinkUrl: v } })} />
+                  </div>
                   <Field label="GitHub URL" value={config.footer.social.github} onChange={(v) => setConfig({ ...config, footer: { ...config.footer, social: { ...config.footer.social, github: v } } })} />
                   <Field label="Twitter URL" value={config.footer.social.twitter} onChange={(v) => setConfig({ ...config, footer: { ...config.footer, social: { ...config.footer.social, twitter: v } } })} />
                 </SectionCard>
@@ -237,45 +247,68 @@ export default function AdminPage() {
             {/* Images Tab */}
             {activeTab === 'images' && (
               <div className="space-y-6">
+                {/* Receipt Card */}
                 <SectionCard title="Receipt Card Image">
-                  <p className="mb-4 text-sm text-muted-foreground">
-                    This image shows in the hero section and after demo minting completes.
-                  </p>
-                  <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 rounded-xl border border-border bg-muted p-2">
-                      <img src={config.receiptImage} alt="Current receipt" className="h-48 w-auto rounded-lg" />
-                    </div>
-                    <div className="space-y-3">
-                      <p className="text-sm font-medium">Current: <code className="rounded bg-muted px-2 py-0.5 text-xs">{config.receiptImage}</code></p>
-                      <div>
-                        <input
-                          ref={fileInputRef}
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={(e) => handleImageUpload(e, 'receipt')}
-                        />
-                        <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()}>
-                          <Upload className="mr-2 h-4 w-4" />
-                          Upload New Image
-                        </Button>
-                      </div>
-                      <p className="text-xs text-muted-foreground">
-                        Use a PNG with transparent background for best results. Recommended size: 400×500px.
-                      </p>
-                    </div>
-                  </div>
+                  <p className="text-sm text-muted-foreground">Shown in the hero section and after demo minting. Use PNG with transparent background, ~400×500px.</p>
+                  <ImageUploadRow
+                    label="Receipt Card"
+                    current={config.receiptImage}
+                    previewHeight="h-48"
+                    inputRef={receiptRef}
+                    onUpload={(e) => handleImageUpload(e, 'receipt')}
+                  />
                 </SectionCard>
 
-                <SectionCard title="Logo & Favicon">
-                  <p className="mb-4 text-sm text-muted-foreground">
-                    The logo is an SVG icon in the code. To change it:
+                {/* Logo */}
+                <SectionCard title="Logo Image">
+                  <p className="text-sm text-muted-foreground">
+                    Upload a logo image (PNG/SVG, ~120×40px) to replace the default geometric SVG icon in the navbar and footer.
+                    Leave empty to keep using the default icon.
                   </p>
-                  <div className="space-y-3 rounded-xl bg-muted/50 p-4">
-                    <p className="text-sm"><strong>Logo Icon:</strong> Edit the SVG in <code className="rounded bg-muted px-2 py-0.5 text-xs">components/Navigation.tsx</code> and <code className="rounded bg-muted px-2 py-0.5 text-xs">components/Footer.tsx</code></p>
-                    <p className="text-sm"><strong>Favicon:</strong> Replace <code className="rounded bg-muted px-2 py-0.5 text-xs">public/favicon.ico</code> with your own .ico file (32×32px)</p>
-                    <p className="text-sm"><strong>OG Image:</strong> Add <code className="rounded bg-muted px-2 py-0.5 text-xs">public/og-image.png</code> (1200×630px) for social sharing previews</p>
-                  </div>
+                  <ImageUploadRow
+                    label="Logo"
+                    current={config.logoImage}
+                    previewHeight="h-16"
+                    inputRef={logoRef}
+                    onUpload={(e) => handleImageUpload(e, 'logo')}
+                  />
+                  {config.logoImage && (
+                    <button
+                      onClick={() => setConfig({ ...config, logoImage: '' })}
+                      className="mt-2 text-xs text-red-500 hover:text-red-600"
+                    >
+                      ✕ Remove logo image (revert to default icon)
+                    </button>
+                  )}
+                </SectionCard>
+
+                {/* Favicon */}
+                <SectionCard title="Favicon">
+                  <p className="text-sm text-muted-foreground">
+                    Upload a .ico or PNG file (32×32px or 64×64px) to replace the browser tab icon.
+                  </p>
+                  <ImageUploadRow
+                    label="Favicon"
+                    current={config.favicon}
+                    previewHeight="h-10"
+                    inputRef={faviconRef}
+                    onUpload={(e) => handleImageUpload(e, 'favicon')}
+                    accept=".ico,image/png,image/x-icon"
+                  />
+                </SectionCard>
+
+                {/* OG Image */}
+                <SectionCard title="Social Share Image (OG Image)">
+                  <p className="text-sm text-muted-foreground">
+                    This image appears when your site is shared on Twitter, WhatsApp, etc. Recommended: 1200×630px PNG.
+                  </p>
+                  <ImageUploadRow
+                    label="OG Image"
+                    current={config.ogImage}
+                    previewHeight="h-32"
+                    inputRef={ogRef}
+                    onUpload={(e) => handleImageUpload(e, 'og')}
+                  />
                 </SectionCard>
               </div>
             )}
@@ -399,6 +432,48 @@ function FieldTextarea({ label, value, onChange }: { label: string; value: strin
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
+    </div>
+  );
+}
+
+function ImageUploadRow({
+  label,
+  current,
+  previewHeight,
+  inputRef,
+  onUpload,
+  accept = 'image/*',
+}: {
+  label: string;
+  current: string;
+  previewHeight: string;
+  inputRef: React.RefObject<HTMLInputElement>;
+  onUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  accept?: string;
+}) {
+  return (
+    <div className="flex items-start gap-6">
+      <div className="flex-shrink-0 rounded-xl border border-border bg-muted/60 p-2">
+        {current ? (
+          <img src={current} alt={label} className={`${previewHeight} w-auto rounded-lg object-contain`} />
+        ) : (
+          <div className={`${previewHeight} flex w-24 items-center justify-center rounded-lg text-xs text-muted-foreground`}>
+            No image
+          </div>
+        )}
+      </div>
+      <div className="space-y-2">
+        {current && (
+          <p className="text-sm font-medium">
+            Current: <code className="rounded bg-muted px-2 py-0.5 text-xs">{current}</code>
+          </p>
+        )}
+        <input ref={inputRef} type="file" accept={accept} className="hidden" onChange={onUpload} />
+        <Button variant="outline" size="sm" onClick={() => inputRef.current?.click()}>
+          <Upload className="mr-2 h-4 w-4" />
+          {current ? 'Replace Image' : 'Upload Image'}
+        </Button>
+      </div>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { cn } from '@/lib/utils';
 import { WalletConnectButton } from './WalletConnectButton';
+import { siteConfig } from '@/lib/site-config';
 
 export function Navigation() {
   const pathname = usePathname();
@@ -32,14 +33,17 @@ export function Navigation() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2.5">
           <div className="relative flex h-6 w-6 items-center justify-center">
-            {/* Geometric crossed lines logo */}
-            <svg viewBox="0 0 36 36" className="h-6 w-6" fill="none">
-              <rect x="2" y="2" width="32" height="32" rx="4" stroke="hsl(152 76% 42%)" strokeWidth="2.5" />
-              <line x1="2" y1="18" x2="34" y2="18" stroke="hsl(152 76% 42%)" strokeWidth="2" />
-              <line x1="18" y1="2" x2="18" y2="34" stroke="hsl(152 76% 42%)" strokeWidth="2" />
-              <line x1="6" y1="6" x2="30" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
-              <line x1="30" y1="6" x2="6" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
-            </svg>
+            {siteConfig.logoImage ? (
+              <img src={siteConfig.logoImage} alt={siteConfig.name} className="h-6 w-auto" />
+            ) : (
+              <svg viewBox="0 0 36 36" className="h-6 w-6" fill="none">
+                <rect x="2" y="2" width="32" height="32" rx="4" stroke="hsl(152 76% 42%)" strokeWidth="2.5" />
+                <line x1="2" y1="18" x2="34" y2="18" stroke="hsl(152 76% 42%)" strokeWidth="2" />
+                <line x1="18" y1="2" x2="18" y2="34" stroke="hsl(152 76% 42%)" strokeWidth="2" />
+                <line x1="6" y1="6" x2="30" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
+                <line x1="30" y1="6" x2="6" y2="30" stroke="hsl(152 76% 42%)" strokeWidth="1.5" opacity="0.5" />
+              </svg>
+            )}
           </div>
           <span className="font-logo text-2xl font-extrabold tracking-tight text-foreground">
             Receipilot
