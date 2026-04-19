@@ -45,7 +45,7 @@ export function Navigation() {
               </svg>
             )}
           </div>
-          <span className="font-logo text-2xl font-extrabold tracking-tight bg-gradient-to-r from-primary to-emerald-300 bg-clip-text text-transparent underline decoration-primary/40 underline-offset-4 decoration-2">
+          <span className="font-logo text-2xl font-extrabold tracking-tight text-primary">
             Receipilot
           </span>
         </Link>
