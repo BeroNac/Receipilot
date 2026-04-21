@@ -67,7 +67,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://github.com/receipilot"
+                  href="https://github.com/receipilotxyz/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-foreground/70 transition-colors hover:text-primary"
@@ -84,7 +84,7 @@ export function Footer() {
             <div className="flex space-x-3">
               {[
                 { href: 'https://twitter.com/receipilot', icon: Twitter, label: 'Twitter' },
-                { href: 'https://github.com/receipilot', icon: Github, label: 'GitHub' },
+                { href: 'https://github.com/receipilotxyz/', icon: Github, label: 'GitHub' },
                 { href: 'mailto:hello@receipilot.xyz', icon: Mail, label: 'Email' },
               ].map((social) => (
                 <a
