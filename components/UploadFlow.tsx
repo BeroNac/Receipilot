@@ -20,11 +20,17 @@ export function UploadFlow() {
   const [receiptLink, setReceiptLink] = useState('');
   const [showEmlGuide, setShowEmlGuide] = useState(false);
   const [showFundingNotice, setShowFundingNotice] = useState(false);
+  const [showWalletPrompt, setShowWalletPrompt] = useState(false);
   const [mintPending, setMintPending] = useState(false);
   const { isConnected } = useAccount();
   const { toast } = useToast();
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!isConnected) {
+      setShowWalletPrompt(true);
+      e.target.value = '';
+      return;
+    }
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       if (!selectedFile.name.endsWith('.eml')) {
@@ -44,6 +50,11 @@ export function UploadFlow() {
   };
 
   const handleGenerateProof = async () => {
+    if (!isConnected) {
+      setShowWalletPrompt(true);
+      return;
+    }
+
     if (activeTab === 'upload' && !file) {
       toast({
         title: 'No file selected',
@@ -90,26 +101,6 @@ export function UploadFlow() {
   return (
     <>
       <div id="upload" className="mx-auto max-w-4xl">
-        {/* Wallet gate — show connect prompt when wallet is not connected */}
-        {!isConnected ? (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="clean-card rounded-2xl p-12 text-center space-y-6"
-          >
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-muted">
-              <Wallet className="h-8 w-8 text-primary" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Connect Your Wallet to Start Minting</h3>
-              <p className="text-sm text-muted-foreground max-w-sm mx-auto">
-                You need a Web3 wallet to generate cryptographic proofs and mint your verified receipt NFTs on Base.
-              </p>
-            </div>
-            <WalletConnectButton label="Connect Wallet" size="lg" />
-            <p className="text-xs text-muted-foreground">Receipilot is completely free — no subscription, no gas fees.</p>
-          </motion.div>
-        ) : (
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="upload" className="gap-1 px-2 text-xs sm:text-sm sm:gap-2">
@@ -347,8 +338,25 @@ export function UploadFlow() {
             </motion.div>
           </TabsContent>
         </Tabs>
-        )} {/* end wallet gate */}
       </div>
+
+      {/* Wallet connection prompt dialog */}
+      <Dialog open={showWalletPrompt} onOpenChange={setShowWalletPrompt}>
+        <DialogContent className="max-w-sm text-center">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Connect your wallet first</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col items-center gap-4 py-2">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-muted">
+              <Wallet className="h-7 w-7 text-primary" />
+            </div>
+            <p className="text-sm text-muted-foreground">
+              You need a Web3 wallet to generate cryptographic proofs and mint your verified receipt NFT on Base.
+            </p>
+            <WalletConnectButton label="Connect Wallet" size="lg" />
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Pre-mint funding notice dialog */}
       <Dialog open={showFundingNotice} onOpenChange={setShowFundingNotice}>

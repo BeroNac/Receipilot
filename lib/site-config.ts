@@ -117,9 +117,9 @@ export const siteConfig = {
   },
   "fonts": {
     "logoFont": {
-      "type": "google",
-      "family": "Raleway",
-      "url": ""
+      "type": "upload",
+      "family": "Heming Variable",
+      "url": "/fonts/heming_variable.ttf"
     },
     "bodyFont": {
       "type": "upload",
