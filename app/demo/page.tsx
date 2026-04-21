@@ -8,8 +8,6 @@ export const metadata = {
 export default function DemoPage() {
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* Dot Grid Background */}
-      <div className="pointer-events-none absolute inset-0 -z-10 dot-grid" />
 
       <div className="container mx-auto px-4 py-12">
         {/* Minimal Header */}

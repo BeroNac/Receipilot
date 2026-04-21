@@ -7,7 +7,7 @@ import { siteConfig } from '@/lib/site-config';
 
 export default function Home() {
   return (
-    <div className="relative overflow-hidden dot-grid">
+    <div className="relative overflow-hidden">
       <Hero />
       
       <section id="upload" className="container mx-auto px-4 py-20">

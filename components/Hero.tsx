@@ -12,8 +12,6 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden py-16 md:py-24 lg:py-28">
-      {/* Dot Grid Background */}
-      <div className="pointer-events-none absolute inset-0 -z-10 dot-grid" />
 
       <div className="container mx-auto px-4">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
