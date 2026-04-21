@@ -51,17 +51,18 @@ export function Hero() {
                 <div
                   role="presentation"
                   aria-hidden="true"
-                  className="w-[307px] sm:w-[346px] drop-shadow-2xl"
                   style={{
                     backgroundImage: `url(${siteConfig.receiptImage})`,
                     backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
-                    aspectRatio: '4/5',
+                    width: '260px',
+                    height: '325px',
                     WebkitUserSelect: 'none',
                     userSelect: 'none',
                     pointerEvents: 'none',
                   }}
+                  className="drop-shadow-2xl"
                 />
               </div>
             </div>
@@ -104,17 +105,18 @@ export function Hero() {
               <div
                 role="presentation"
                 aria-hidden="true"
-                className="w-full max-w-[460px] drop-shadow-2xl"
                 style={{
                   backgroundImage: `url(${siteConfig.receiptImage})`,
                   backgroundSize: 'contain',
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center',
-                  aspectRatio: '4/5',
+                  width: '360px',
+                  height: '450px',
                   WebkitUserSelect: 'none',
                   userSelect: 'none',
                   pointerEvents: 'none',
                 }}
+                className="drop-shadow-2xl"
               />
             </div>
           </div>
