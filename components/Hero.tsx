@@ -51,7 +51,7 @@ export function Hero() {
                 <div
                   role="presentation"
                   aria-hidden="true"
-                  className="w-64 sm:w-72 drop-shadow-2xl"
+                  className="w-[307px] sm:w-[346px] drop-shadow-2xl"
                   style={{
                     backgroundImage: `url(${siteConfig.receiptImage})`,
                     backgroundSize: 'contain',
@@ -104,7 +104,7 @@ export function Hero() {
               <div
                 role="presentation"
                 aria-hidden="true"
-                className="w-full max-w-sm drop-shadow-2xl"
+                className="w-full max-w-[460px] drop-shadow-2xl"
                 style={{
                   backgroundImage: `url(${siteConfig.receiptImage})`,
                   backgroundSize: 'contain',
