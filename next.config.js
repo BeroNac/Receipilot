@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   devIndicators: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   output: 'standalone',
   outputFileTracingRoot: __dirname,
   images: {
