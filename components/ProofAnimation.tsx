@@ -92,6 +92,7 @@ export function ProofAnimation({
     }, interval);
 
     return () => clearInterval(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, currentStepIndex, onComplete]);
 
   const radius = 120;

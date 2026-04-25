@@ -153,7 +153,7 @@ export function UploadFlow() {
                       <ol className="list-decimal list-inside space-y-1">
                         <li>Open the receipt email</li>
                         <li>Click the three-dot menu (⋮) in the top-right of the email</li>
-                        <li>Select <strong>"Download message"</strong> — saves as <code className="rounded bg-muted px-1">.eml</code></li>
+                        <li>Select <strong>&quot;Download message&quot;</strong> — saves as <code className="rounded bg-muted px-1">.eml</code></li>
                       </ol>
                     </div>
                     <div>
@@ -253,7 +253,7 @@ export function UploadFlow() {
                 <div className="rounded-xl border border-border bg-muted/40 p-4">
                   <p className="mb-3 text-sm font-semibold flex items-center gap-2">
                     <Link2 className="h-4 w-4 text-primary" />
-                    Brands we're working with to support this method
+                    Brands we&apos;re working with to support this method
                   </p>
                   <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
                     {['Amazon', 'Best Buy', 'eBay', 'Nike', 'Adidas', 'Apple', 'ASUS', 'Walmart', 'Steam'].map((b) => (
