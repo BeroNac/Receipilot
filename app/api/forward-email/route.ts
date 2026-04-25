@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
 import { emailParser } from '@/lib/email-parser';
 import { vlayerProver } from '@/lib/vlayer';
 import { ipfsStorage } from '@/lib/ipfs';
-
-const _resend = new Resend(process.env.RESEND_API_KEY);
 
 function logError(message: string, error?: unknown) {
   const detail = error instanceof Error ? `: ${error.message}` : '';
